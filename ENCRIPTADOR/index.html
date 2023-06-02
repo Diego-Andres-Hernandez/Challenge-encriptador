@@ -2,55 +2,193 @@
 
 
 <html lang="es">
-<head>
+    <head>
     <meta charset="utf-8">
     <meta name="viwerport" content="width=divace-width" />
     <title>Codificador Alura-G5-challenge</title>
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="style.css" />
     <!--
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    se definen datos del encabezado. 
     -->
 </head>
-<body>
+    <body>
     <header>
         <div>
             <h1 class="img-logo" ;><img src="imagenes/logo.png" alt="Imagen Logo Alura"></h1>
-
-        </div>
-        
+        </div>        
     </header>
 
     <section>
+        <!-- AREA TEXTO RESULTADO -->
+        <textarea id="area-resultado" class="area-resultado"></textarea>
+
         <ul class="cuadro-resultado">
             <li>
                 <img src="imagenes/Muñeco.png" alt=" IMAGEN MUÑECO DEL CUADRO RESULTADO">
                 <label for="encontrar texto">Ningún mensaje fue encontrado</label>
+                <!-- BOTON COPIAR -->
+                <button id="copy" class="boton-Copiar" onclick="copiar()">Copiar</button>
             </li>
         </ul>
+
     </section>
 
     <main>
-        <section >
-            <form>
-                <textarea class="area-texto" placeholder="Ingrese su texto aqui"></textarea>
-
-            </form>
-            <div class="botones">
+        <section>
+         
+                <!-- AREA TEXTO A CODIFICAR -->
+                <textarea id="area-texto" class="area-texto" placeholder="Ingrese su texto aqui"></textarea>
 
 
-                <p class="texto">&#9888;Solo letras minusculas y sin acentos.</p>
-                <button class="boton-encriptador"></button>
-                <button class="boton-desencriptador"></button>
-            </div>
+
+
+
+                <p class="texto">&#9888; El texto no pueden contener acentos </p>
+                <div class="botones">
+                    <!-- BOTON CODIFICAR -->
+                    <button class="boton-encriptador" onclick="codificar()">Encriptar</button>
+
+                    <!-- BOTON DECODIFICAR -->
+                    <button class="boton-desencriptador" onclick="decodificar()">Desencriptar</button>
+
+
+
+                </div>
+            
         </section>
 
-        <script>
-            
-            
 
+       
+        <script>
+            function tieneAcentos(texto) {
+                var caracter = /[áéíóúÁÉÍÓÚ]/;
+                return caracter.test(texto);
+            }
+            function codificar() {
+                /*Variable que recibe el  mensaje completo*/
+                let textoOrigen = document.getElementById("area-texto").value;
+
+                if (tieneAcentos(textoOrigen)) {
+                    alert("El mensaje original contiene acentos.");
+                } else {
+                    console.log("El mensaje original no contiene acentos.");
+               
+
+                               /* se crea variable resultado vacia para poner el texto encriptado*/
+                                let textoResultado = "";
+                
+                                /*se crea If para validar si el  texarea esta vacio*/
+                                if (textoOrigen != "") {
+
+                                    /*  textoOrigen = textoOrigen.toLowerCase();*/
+
+                                    /* Verificar si el texto original tiene acentos */
+                   
+
+                  
+                    
+                                    var remplaceLetra = '';
+                                    var letra = ['a', 'e', 'i', 'o', 'u'];
+
+                                    for (var i = 0; i < textoOrigen.length; i++) {
+                                        /*ciclo for para ver el largo del texto*/
+                                        console.log(i);
+                                        
+                                        var caracter = textoOrigen.charAt(i);/*con esta linea se consigue acceder el caracter actual*/
+                                        if (letra.includes(remplaceLetra.toLowerCase())) {
+                                            if (caracter.toLowerCase() === 'a') {
+                                                remplaceLetra += 'ai';
+                                            } else if (caracter.toLowerCase() === 'e') {
+                                                remplaceLetra += 'enter';
+                                            } else if (caracter.toLowerCase() === 'i') {
+                                                remplaceLetra += 'imes';
+                                            } else if (caracter.toLowerCase() === 'o') {
+                                                remplaceLetra += 'ober';
+                                            } else if (caracter.toLowerCase() === 'u') {
+                                                remplaceLetra += 'ufat';
+                                            }
+                                        }
+
+                                        else {
+                                            remplaceLetra += caracter;
+                                        }
+
+                                    }
+
+                                }
+                                else {
+
+                                    alert("debe ingresar un texto");
+                                }
+                  
+                }
+                document.getElementById("area-resultado").value = remplaceLetra;
+                document.getElementById("area-texto").value = "";
+
+                
+            }
+            
+            function decodificar() {
+                /* Variable que recibe el mensaje completo codificado */
+                let textoOrigen = document.getElementById("area-texto").value;
+
+                /* Variable para almacenar el texto decodificado */
+                let textoDecodificado = "";
+
+                /* Se verifica si el textarea está vacío */
+                if (textoOrigen != "") {
+                    
+                    var remplaceLetra = "";
+                    
+                    var letra = ["ai", "enter", "imes", "ober", "ufat"];
+                    
+                    var letroOriginal = ["a", "e", "i", "o", "u"];
+
+                    for (var i = 0; i < textoOrigen.length; i++) {
+                        /* Ciclo for para recorrer el texto codificado */
+                        console.log(i);
+                        var caracter = textoOrigen.charAt(i); /* Se obtiene el caracter actual */
+
+                        var currentVowel = "";
+                        for (var j = 0; j < letra.length; j++) {
+                            /* Ciclo for para verificar cada vocal codificada */
+                            if (textoOrigen.substring(i, i + letra[j].length) === letra[j]) {
+                                currentVowel = letra[j];
+                                break;
+                            }
+                        }
+
+                        if (currentVowel !== "") {
+                            /* Si se encuentra una vocal codificada */
+                            var index = letra.indexOf(currentVowel);
+                            remplaceLetra += letroOriginal[index];
+                            i += currentVowel.length - 1; /* Se avanza al siguiente caracter después de la vocal codificada */
+                        } else {
+                            remplaceLetra += caracter;
+                        }
+                    }
+
+                    /* Asigna el texto decodificado al textarea correspondiente */
+                    document.getElementById("area-resultado").value = remplaceLetra;
+                    document.getElementById("area-texto").value = "";
+                } else {
+                    alert("Debe ingresar un texto codificado");
+                }
+            }
+
+
+            function copiar() {
+
+                let textoOrigen = document.getElementById("area-resultado").value;
+                document.getElementById("area-texto").value = textoOrigen;
+                document.getElementById("area-resultado").value = "";
+            }
+
+
+          
+
+            
 
         </script>
 
@@ -60,7 +198,7 @@
 
     <footer>
 
-        <p>pie</p>
+        <p></p>
 
 
     </footer>

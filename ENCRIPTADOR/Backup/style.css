@@ -4,7 +4,7 @@ body {
 }
 header {
     
-    width: 100%;
+    width: 60%;
     background-color: lightgray;
     /* float: left;*/
 }
@@ -27,76 +27,40 @@ main{
 
 }
 .botones {
-    /* width: calc(100% - 80px);*/
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 0px;
-    gap: 24px;
-    position: center;
-    width: 688px;
-    height: 67px;
-    left: 40px;
-    top: 894px;
+    
+    width: calc(100% - 80px);
 }
 .boton-encriptador {
-    /* Button */
-    /* Auto layout */
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 24px;
-    gap: 8px;
-    width: 328px;
-    height: 67px;
-    /* Dark blue/dark-blue-300 */
-
-    background: #0A3871;
-    border-radius: 24px;
-    /* Inside auto layout */
-
-    flex: none;
-    order: 0;
-    flex-grow: 0;
+    background-image: url('imagenes/Frame3-1.png');
+    background-size: cover; /* Ajusta el tamaño de la imagen al botón  margin: 60px;*/
+    width: 345px; /* Ajusta el ancho del botón según tus necesidades */
+    height: 69px;
+    border: none; /* Elimina el borde del botón */
+    outline: none; /* Elimina el contorno al hacer clic en el botón */
+    cursor: pointer;
 }
 .boton-desencriptador {
-    /* Button */
+    background-image: url('imagenes/Frame3-2.png');
+    background-size: cover; /* Ajusta el tamaño de la imagen al botón */
+    width: 351px; /* Ajusta el ancho del botón según tus necesidades */
+    height: 69px;
+    border: none; /* Elimina el borde del botón */
+    outline: none; /* Elimina el contorno al hacer clic en el botón */
+    cursor: pointer;
 
-
-    box-sizing: border-box;
-    /* Auto layout */
-
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 24px;
-    gap: 8px;
-    width: 328px;
-    height: 67px;
-    /* Light gray */
-
-    background: #D8DFE8;
-    /* Dark blue/dark-blue-300 */
-
-    border: 1px solid #0A3871;
-    border-radius: 24px;
-    /* Inside auto layout */
-
-    flex: none;
-    order: 1;
-    flex-grow: 0;
+  
 }
 
-.boton-Copiar {
-    /* Button */
+.boton-Copiar{
     box-sizing: border-box;
     /* Auto layout */
+
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     padding: 24px;
     gap: 8px;
-    /*position: absolute;*/
+    position: absolute;
     width: 336px;
     height: 67px;
     left: 1032px;
@@ -107,7 +71,7 @@ main{
     border-radius: 24px;
 }
 .cuadro-resultado {
-    margin: 0 100px 0 0;
+    margin: -80px 100px 0 100px;
     text-align: center;
     font-style: normal;
     font-size: 40px;
@@ -129,9 +93,8 @@ main{
 
 
 .cuadro-resultado {
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    height: 30%;
-}
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
 
  .cuadro-resultado:hover {
             opacity: 0.5;
