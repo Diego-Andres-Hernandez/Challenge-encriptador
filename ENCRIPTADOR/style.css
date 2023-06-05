@@ -42,6 +42,8 @@ main{
 .boton-encriptador {
     /* Button */
     /* Auto layout */
+    justify-content: center;
+    color:white;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -65,7 +67,7 @@ main{
 
     box-sizing: border-box;
     /* Auto layout */
-
+    justify-content: center;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -91,6 +93,7 @@ main{
     /* Button */
     box-sizing: border-box;
     /* Auto layout */
+    justify-content: center;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -128,6 +131,7 @@ main{
 
 
 
+
 .cuadro-resultado {
     transition: opacity 0.5s ease, transform 0.5s ease;
     height: 30%;
@@ -146,10 +150,11 @@ main {
 }
 
 .area-texto {
-    margin: 5% 0 0 5%;
-    width: 600px;
-    height: 280px;
+    margin: 5% 1%;
+    width: 300px;
+    height:250px;
     background: #e5e5e5;
+    font-size:15px
 }
 .texto {
     margin: 5px 0 0 5px;

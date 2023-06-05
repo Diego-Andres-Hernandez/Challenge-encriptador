@@ -20,11 +20,12 @@
     </header>
 
     <section>
-        <!-- AREA TEXTO RESULTADO -->
-        <textarea id="area-resultado" class="area-resultado"></textarea>
 
+        
         <ul class="cuadro-resultado">
             <li>
+
+
                 <img src="imagenes/Muñeco.png" alt=" IMAGEN MUÑECO DEL CUADRO RESULTADO">
                 <label for="encontrar texto">Ningún mensaje fue encontrado</label>
                 <!-- BOTON COPIAR -->
@@ -36,52 +37,54 @@
 
     <main>
         <section>
-         
-                <!-- AREA TEXTO A CODIFICAR -->
-                <textarea id="area-texto" class="area-texto" placeholder="Ingrese su texto aqui"></textarea>
+
+            <!-- AREA TEXTO A CODIFICAR -->
+            <textarea id="area-texto" class="area-texto" placeholder="Ingrese su texto aqui"></textarea>
+
+            <!--<textarea id="area-resultado"></textarea>-->
+            <!-- AREA TEXTO RESULTADO -->
+
+            <textarea id="area-resultado" class="area-texto"></textarea>
 
 
 
 
 
-                <p class="texto">&#9888; El texto no pueden contener acentos </p>
-                <div class="botones">
-                    <!-- BOTON CODIFICAR -->
-                    <button class="boton-encriptador" onclick="codificar()">Encriptar</button>
+            <p class="texto">&#9888; El texto no pueden contener acentos </p>
+            <div class="botones">
+                <!-- BOTON CODIFICAR -->
+                <button class="boton-encriptador" onclick="codificar()">Encriptar</button>
 
-                    <!-- BOTON DECODIFICAR -->
-                    <button class="boton-desencriptador" onclick="decodificar()">Desencriptar</button>
+                <!-- BOTON DECODIFICAR -->
+                <button class="boton-desencriptador" onclick="decodificar()">Desencriptar</button>
 
 
 
-                </div>
-            
+            </div>
+
         </section>
 
 
        
         <script>
+
             function tieneAcentos(texto) {
                 var caracter = /[áéíóúÁÉÍÓÚ]/;
                 return caracter.test(texto);
             }
+
             function codificar() {
-                /*Variable que recibe el  mensaje completo*/
-                let textoOrigen = document.getElementById("area-texto").value;
+               /*Variable que recibe el  mensaje completo*/
+              let textoOrigen = document.getElementById("area-texto").value;
 
-                if (tieneAcentos(textoOrigen)) {
-                    alert("El mensaje original contiene acentos.");
-                } else {
-                    console.log("El mensaje original no contiene acentos.");
-               
-
-                               /* se crea variable resultado vacia para poner el texto encriptado*/
-                                let textoResultado = "";
                 
+
+                            
+                                
                                 /*se crea If para validar si el  texarea esta vacio*/
                                 if (textoOrigen != "") {
 
-                                    /*  textoOrigen = textoOrigen.toLowerCase();*/
+                                      textoOrigen = textoOrigen.toLowerCase();
 
                                     /* Verificar si el texto original tiene acentos */
                    
@@ -96,7 +99,7 @@
                                         console.log(i);
                                         
                                         var caracter = textoOrigen.charAt(i);/*con esta linea se consigue acceder el caracter actual*/
-                                        if (letra.includes(remplaceLetra.toLowerCase())) {
+                                        if (letra.includes(caracter.toLowerCase())) {
                                             if (caracter.toLowerCase() === 'a') {
                                                 remplaceLetra += 'ai';
                                             } else if (caracter.toLowerCase() === 'e') {
@@ -122,7 +125,7 @@
                                     alert("debe ingresar un texto");
                                 }
                   
-                }
+                
                 document.getElementById("area-resultado").value = remplaceLetra;
                 document.getElementById("area-texto").value = "";
 
