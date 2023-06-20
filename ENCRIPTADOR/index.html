@@ -21,25 +21,34 @@
 
     <section>
 
-        
+
         <ul class="cuadro-resultado">
             <li>
 
+                <div id="mi-elemento" class="imagen-1">
 
-                <img src="imagenes/Muñeco.png" alt=" IMAGEN MUÑECO DEL CUADRO RESULTADO">
-                <label for="encontrar texto">Ningún mensaje fue encontrado</label>
-                <!-- BOTON COPIAR -->
-                <button id="copy" class="boton-Copiar" onclick="copiar()">Copiar</button>
+                    <!-- temporal 1
+                        <img src="imagenes/starwar1.gif" alt=" IMAGEN MUÑECO DEL CUADRO RESULTADO">
+                     -->
+
+                    <label for="encontrar texto"></label>
+                </div>
+                <div>
+                    <!-- BOTON COPIAR -->
+                    <button id="copy" class="boton-Copiar" onclick="copiar()">Copiar</button>
+                </div>
+
             </li>
-        </ul>
 
+        </ul>
+       
     </section>
 
     <main>
         <section>
 
             <!-- AREA TEXTO A CODIFICAR -->
-            <textarea id="area-texto" class="area-texto" placeholder="Ingrese su texto aqui"></textarea>
+            <textarea  id="area-texto" class="area-texto" placeholder="Ingrese su texto aqui"></textarea>
 
             <!--<textarea id="area-resultado"></textarea>-->
             <!-- AREA TEXTO RESULTADO -->
@@ -50,13 +59,13 @@
 
 
 
-            <p class="texto">&#9888; El texto no pueden contener acentos </p>
-            <div class="botones">
+            <p class="texto">&#9888;No usar acentos.</p>
+            <div   class="botones">
                 <!-- BOTON CODIFICAR -->
-                <button class="boton-encriptador" onclick="codificar()">Encriptar</button>
+                <button id="cambiar-imagen" class="boton-encriptador" onclick="codificar()">Encriptar</button>
 
                 <!-- BOTON DECODIFICAR -->
-                <button class="boton-desencriptador" onclick="decodificar()">Desencriptar</button>
+                <button id="cambiar-imagen"  class="boton-desencriptador" onclick="decodificar()">Desencriptar</button>
 
 
 
@@ -76,61 +85,70 @@
             function codificar() {
                /*Variable que recibe el  mensaje completo*/
               let textoOrigen = document.getElementById("area-texto").value;
-
+                
                 
 
                             
                                 
-                                /*se crea If para validar si el  texarea esta vacio*/
-                                if (textoOrigen != "") {
+                                /*se crea If para validar si el  texarea esta vacio if =1 */
+                if (textoOrigen != "") {
 
-                                      textoOrigen = textoOrigen.toLowerCase();
 
-                                    /* Verificar si el texto original tiene acentos */
-                   
+                    /* convertir en minusculas el texto origen*/
+                    textoOrigen = textoOrigen.toLowerCase();
 
-                  
-                    
-                                    var remplaceLetra = '';
-                                    var letra = ['a', 'e', 'i', 'o', 'u'];
 
-                                    for (var i = 0; i < textoOrigen.length; i++) {
-                                        /*ciclo for para ver el largo del texto*/
-                                        console.log(i);
-                                        
-                                        var caracter = textoOrigen.charAt(i);/*con esta linea se consigue acceder el caracter actual*/
-                                        if (letra.includes(caracter.toLowerCase())) {
-                                            if (caracter.toLowerCase() === 'a') {
-                                                remplaceLetra += 'ai';
-                                            } else if (caracter.toLowerCase() === 'e') {
-                                                remplaceLetra += 'enter';
-                                            } else if (caracter.toLowerCase() === 'i') {
-                                                remplaceLetra += 'imes';
-                                            } else if (caracter.toLowerCase() === 'o') {
-                                                remplaceLetra += 'ober';
-                                            } else if (caracter.toLowerCase() === 'u') {
-                                                remplaceLetra += 'ufat';
-                                            }
-                                        }
+                    if (tieneAcentos(textoOrigen) == false) {
 
-                                        else {
-                                            remplaceLetra += caracter;
-                                        }
 
-                                    }
+                        var remplaceLetra = '';
+                        var letra = ['a', 'e', 'i', 'o', 'u'];
 
+                        for (var i = 0; i < textoOrigen.length; i++) {
+                            /*ciclo for para ver el largo del texto*/
+                            console.log(i);
+
+                            var caracter = textoOrigen.charAt(i);/*con esta linea se consigue acceder el caracter actual*/
+                            if (letra.includes(caracter.toLowerCase())) {
+                                if (caracter.toLowerCase() === 'a') {
+                                    remplaceLetra += 'ai';
+                                } else if (caracter.toLowerCase() === 'e') {
+                                    remplaceLetra += 'enter';
+                                } else if (caracter.toLowerCase() === 'i') {
+                                    remplaceLetra += 'imes';
+                                } else if (caracter.toLowerCase() === 'o') {
+                                    remplaceLetra += 'ober';
+                                } else if (caracter.toLowerCase() === 'u') {
+                                    remplaceLetra += 'ufat';
                                 }
-                                else {
+                            }
 
-                                    alert("debe ingresar un texto");
-                                }
-                  
-                
-                document.getElementById("area-resultado").value = remplaceLetra;
-                document.getElementById("area-texto").value = "";
+                            else {
+                                remplaceLetra += caracter;
+                            }
 
+                        }//for
+                    } else {
+
+                        alert("Acentos")
+                    }
+                }// fin if valida texto vacio if= 1
+                else {
+
+                    alert("debe ingresar un texto");
+
+                }
                 
-            }
+                                    document.getElementById("area-resultado").value = remplaceLetra;
+                                    document.getElementById("area-texto").value = "";
+
+
+
+
+             
+
+
+            }// fin funcion codificar 
             
             function decodificar() {
                 /* Variable que recibe el mensaje completo codificado */
@@ -188,10 +206,50 @@
                 document.getElementById("area-resultado").value = "";
             }
 
+            /*var texarea = remplaceLetra;
+            var textarea = document.getElementById('area-resultado');
+            var elemento = document.getElementById('mi-elemento');
+            var imagen1 = 'imagen-1';
+            var imagen2 = 'imagen-2';
 
-          
+            textarea.addEventListener('input', function () {
+                if (textarea.value.trim() !== '') {
+                    elemento.classList.remove(imagen1);
+                    elemento.classList.add(imagen2);
+                } else {
+                    elemento.classList.remove(imagen2);
+                    elemento.classList.add(imagen1);
+                }
+            });
+          */
+            var boton = document.getElementById('cambiar-imagen');
+            var elemento = document.getElementById('mi-elemento');
+            var imagen1 = 'imagen-1';
+            var imagen2 = 'imagen-2';
+            var imagenActual = imagen1;
 
-            
+            boton.addEventListener('click', function () {
+                if (imagenActual === imagen1) {
+                    elemento.classList.remove(imagen1);
+                    elemento.classList.add(imagen2);
+                    imagenActual = imagen2;
+                } else {
+                    elemento.classList.remove(imagen2);
+                    elemento.classList.add(imagen1);
+                    imagenActual = imagen1;
+                }
+            });
+
+            var textarea = document.getElementById('area-resultado')
+            textarea.addEventListener('input', function () {
+                if (textarea.value.trim() !== '') {
+                    elemento.classList.remove(imagen1);
+                    elemento.classList.add(imagen2);
+                } else {
+                    elemento.classList.remove(imagen2);
+                    elemento.classList.add(imagen1);
+                }
+            });
 
         </script>
 
